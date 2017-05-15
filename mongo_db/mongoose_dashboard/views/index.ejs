@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+	<h1>Mongoose Dashboard</h1>
+	<div class = "container">
+		<a href='/new'>Create a new profile</a>
+		<% for(index in mongooses) { %>
+			<p>Name: <a href="/<%= mongooses[index]._id %>"><%= mongooses[index].name %></a>
+			<a href="/<%= mongooses[index]._id %>/edit/">edit</a>
+				<form action="/<%= mongooses[index]._id %>/delete/" method='post'>
+					<input type="submit" value="delete">
+				</form>
+			</p>
+		<% } %>
+	</div>
+</body>
+</html>
