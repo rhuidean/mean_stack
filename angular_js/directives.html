@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <!-- YOU CAN ALSO LOAD ANGULAR VIA CDN, IT WILL JUST BE SLOWER -->
+    <script src="bower_components/angular/angular.js" charset="utf-8"></script>
+    <script>
+        var app = angular.module('app', []);
+        app.controller('divController', ['$scope', function($scope) {
+
+            $scope.getFoods = function(){
+                $scope.foods = [];    
+            }
+            $scope.addFood = function(newFood) {
+                $scope.foods.push(newFood);
+                $scope.newFood = {};
+            }
+
+     
+        }]);
+    </script>
+</head>
+
+<body>
+    <div ng-controller="divController">
+        <form ng-submit="addFood(newFood)">
+        Favorite Food <input type="text" ng-model="newFood.name">
+            <input type="submit" value="Add Food">
+        </form>
+        <p>{{newFood.name}}</p>
+    
+        <ul ng-init="getFoods()">
+            <input type="text" ng-model="userSearch">
+            <li ng-repeat="food in foods | filter: userSearch track by $index">{{food.name}} index: {{$index}}
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>
